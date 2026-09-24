@@ -6,6 +6,7 @@ import {AnalysisResponse} from '../../models/analysis-response';
 import {getAnalysisErrorMessages} from '../../services/analysis-error-messages';
 import {EmployeePairsService} from '../../services/employee-pairs.service';
 import {validateCsvFile} from '../../validation/csv-file.validation';
+import { UPLOAD_CONSTANTS } from '../../../core/constants/upload.constants';
 
 @Component({
   selector: 'app-employee-upload',
@@ -13,6 +14,7 @@ import {validateCsvFile} from '../../validation/csv-file.validation';
   styleUrl: './employee-upload.component.css'
 })
 export class EmployeeUploadComponent {
+  readonly acceptedFileTypes = UPLOAD_CONSTANTS.ACCEPTED_FILE_TYPES;
   private readonly destroyRef = inject(DestroyRef);
 
   loading = false;

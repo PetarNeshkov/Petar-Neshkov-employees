@@ -1,16 +1,17 @@
-const maxFileBytes = 1_048_576;
+import { ERROR_MESSAGES } from '../../core/constants/error-messages';
+import { UPLOAD_CONSTANTS } from '../../core/constants/upload.constants';
 
 export function validateCsvFile(file: File): string | null {
-  if (!file.name.toLowerCase().endsWith('.csv')) {
-    return 'Choose a file with a .csv extension.';
+  if (!file.name.toLowerCase().endsWith(UPLOAD_CONSTANTS.CSV_EXTENSION)) {
+    return ERROR_MESSAGES.CSV_EXTENSION_REQUIRED;
   }
 
   if (file.size === 0) {
-    return 'The selected file is empty. Choose a CSV containing employee assignments.';
+    return ERROR_MESSAGES.EMPTY_FILE;
   }
 
-  if (file.size > maxFileBytes) {
-    return 'The file is too large. Choose a CSV no larger than 1 MiB.';
+  if (file.size > UPLOAD_CONSTANTS.MAX_FILE_BYTES) {
+    return ERROR_MESSAGES.FILE_TOO_LARGE;
   }
 
   return null;

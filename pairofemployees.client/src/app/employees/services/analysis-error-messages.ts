@@ -1,17 +1,19 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {ApiProblem} from '../models/api-problem';
+import { ERROR_MESSAGES } from '../../core/constants/error-messages';
+import { HTTP_STATUS } from '../../core/constants/http-status.constants';
 
 export function getAnalysisErrorMessages(error: HttpErrorResponse): string[] {
-  if (error.status === 0) {
-    return ['Could not reach the server. Check your connection and choose the file again.'];
+  if (error.status === HTTP_STATUS.NETWORK_ERROR) {
+    return [ERROR_MESSAGES.CONNECTION_FAILED];
   }
 
-  if (error.status === 413) {
-    return ['The upload is too large. Choose a CSV file no larger than 1 MB.'];
+  if (error.status === HTTP_STATUS.PAYLOAD_TOO_LARGE) {
+    return [ERROR_MESSAGES.UPLOAD_TOO_LARGE];
   }
 
-  if (error.status >= 500) {
-    return ['The server could not analyze the file. Please try again.'];
+  if (error.status >= HTTP_STATUS.SERVER_ERROR_START) {
+    return [ERROR_MESSAGES.SERVER_ERROR];
   }
 
   // A proxy may return plain text or HTML instead of the API's JSON error format.
@@ -37,5 +39,5 @@ export function getAnalysisErrorMessages(error: HttpErrorResponse): string[] {
     }
   }
 
-  return ['The file could not be analyzed. Check its contents and try again.'];
+  return [ERROR_MESSAGES.ANALYSIS_FAILED];
 }
