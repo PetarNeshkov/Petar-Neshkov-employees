@@ -1,8 +1,47 @@
-:host { display: block; }
-main { width: min(960px, calc(100% - 40px)); margin: 64px auto 32px; }
-header { max-width: 740px; margin-bottom: 32px; }
-.eyebrow { color: #285f66; font-size: .8rem; font-weight: 750; letter-spacing: .15em; }
-h1 { margin: 12px 0; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.04em; line-height: 1.12; }
-.intro { font-size: 1.1rem; color: #566574; line-height: 1.7; }
-footer { margin-top: 24px; color: #566574; font-size: .85rem; line-height: 1.6; }
-@media (max-width: 600px) { main { margin-top: 32px; } }
+:host {
+  display: block;
+}
+
+main {
+  width: min(960px, calc(100% - 40px));
+  margin: 64px auto 32px;
+}
+
+header {
+  max-width: 740px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  color: #285f66;
+  font-size: .8rem;
+  font-weight: 750;
+  letter-spacing: .15em;
+}
+
+h1 {
+  margin: 12px 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: -.04em;
+  line-height: 1.12;
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: #566574;
+  line-height: 1.7;
+}
+
+footer {
+  margin-top: 24px;
+  color: #566574;
+  font-size: .85rem;
+  line-height: 1.6;
+}
+
+@media (
+max-width: 600px) {
+  main {
+    margin-top: 32px;
+  }
+}

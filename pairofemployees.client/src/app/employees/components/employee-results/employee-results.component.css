@@ -1,0 +1,106 @@
+.results {
+  margin-top: 28px;
+}
+
+.step {
+  color: #566574;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+h2 {
+  margin: 8px 0 20px;
+  font-size: 1.4rem;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary > div {
+  background: #e5eeef;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.summary span {
+  display: block;
+  font-size: .8rem;
+  color: #43626a;
+}
+
+.summary strong {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  overflow-wrap: anywhere;
+}
+
+.summary .join {
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  background: white;
+  border: 1px solid #dce4e9;
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+caption {
+  text-align: left;
+  padding: 20px;
+  font-weight: 650;
+}
+
+th {
+  font-size: .8rem;
+  color: #566574;
+  background: #f8fafb;
+}
+
+td, th {
+  padding: 16px 20px;
+  border-top: 1px solid #e8edef;
+}
+
+.days {
+  text-align: right;
+}
+
+td.days {
+  font-weight: 650;
+}
+
+p {
+  color: #566574;
+  line-height: 1.7;
+}
+
+.note {
+  font-size: .8rem;
+}
+
+@media (max-width: 600px) {
+  .summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .summary > div {
+    padding: 16px;
+  }
+}

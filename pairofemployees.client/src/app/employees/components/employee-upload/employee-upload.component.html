@@ -1,0 +1,32 @@
+<section class="upload-card" aria-labelledby="upload-title" [attr.aria-busy]="loading">
+  <div class="section-heading">
+    <div><span class="step">01 / UPLOAD</span>
+      <h2 id="upload-title">Your project assignments</h2></div>
+    <span class="badge">CSV</span>
+  </div>
+  <p id="file-help">Choose a CSV file to analyze it automatically. Up to 1 MiB and 10,000 assignment rows.</p>
+  <label for="assignments-file">Assignment file</label>
+  <input id="assignments-file" type="file" accept=".csv,text/csv" [disabled]="loading"
+         aria-describedby="file-help" (change)="onFileSelected($event)"/>
+  <p class="file-name" *ngIf="fileName">Selected: <strong>{{ fileName }}</strong></p>
+  <details>
+    <summary>CSV format and date rules</summary>
+    <p>Use these columns in this order. The header is optional.</p>
+    <pre>EmpID,ProjectID,DateFrom,DateTo
+143,10,2024-01-01,2024-01-10
+218,10,2024-01-05,NULL</pre>
+    <p>Use positive employee and project IDs. <code>NULL</code> means today on the server.</p>
+    <p>Numeric dates support year-first, day-first, and month-first order with <code>-</code>, <code>/</code>, or <code>.</code>
+      separators. Ambiguous dates are day-first: <code>01/02/2024</code> means 1 February.</p>
+  </details>
+  <p class="loading" role="status" *ngIf="loading">Analyzing {{ fileName }}…</p>
+  <div class="errors" role="alert" *ngIf="errors.length">
+    <h3>We couldn’t analyze this file</h3>
+    <ul>
+      <li *ngFor="let error of errors">{{ error }}</li>
+    </ul>
+  </div>
+</section>
+<div aria-live="polite">
+  <app-employee-results *ngIf="response" [pair]="response.pair"/>
+</div>

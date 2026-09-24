@@ -1,0 +1,40 @@
+<section class="results" aria-labelledby="results-title">
+  <span class="step">02 / RESULTS</span>
+  <ng-container *ngIf="pair as result; else noOverlap">
+    <h2 id="results-title">The longest collaboration</h2>
+    <div class="summary">
+      <div><span>Employee pair</span><strong>{{ result.employeeId1 }} <span
+        class="join">&amp;</span> {{ result.employeeId2 }}</strong></div>
+      <div><span>Total days together</span><strong>{{ result.totalDays | number }}</strong></div>
+      <div><span>Common projects</span><strong>{{ result.projects.length | number }}</strong></div>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Project overlap details">
+      <table>
+        <caption>Shared time by project</caption>
+        <thead>
+        <tr>
+          <th scope="col">Employee ID #1</th>
+          <th scope="col">Employee ID #2</th>
+          <th scope="col">Project ID</th>
+          <th scope="col" class="days">Days worked</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let project of result.projects">
+          <td>{{ project.employeeId1 }}</td>
+          <td>{{ project.employeeId2 }}</td>
+          <td>{{ project.projectId }}</td>
+          <td class="days">{{ project.daysWorked | number }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Duplicate assignments count once within each project. Ties are resolved by the lowest employee
+      IDs.</p>
+  </ng-container>
+  <ng-template #noOverlap>
+    <h2 id="results-title">No shared working time found</h2>
+    <p>The file is valid, but no two employees have overlapping dates on the same project. Choose another file to try
+      again.</p>
+  </ng-template>
+</section>
