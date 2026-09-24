@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+**/.angular/
+**/coverage/
+**/TestResults/
+.vs/
+.idea/
+*.user
+*.suo
+*.pem
+*.key
+*.log
+.verification/
