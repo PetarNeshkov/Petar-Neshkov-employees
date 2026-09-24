@@ -6,7 +6,7 @@
   </div>
   <p id="file-help">Choose a CSV file to analyze it automatically. Up to 1 MiB and 10,000 assignment rows.</p>
   <label for="assignments-file">Assignment file</label>
-  <input id="assignments-file" type="file" accept=".csv,text/csv" [disabled]="loading"
+  <input id="assignments-file" type="file" [accept]="acceptedFileTypes" [disabled]="loading"
          aria-describedby="file-help" (change)="onFileSelected($event)"/>
   <p class="file-name" *ngIf="fileName">Selected: <strong>{{ fileName }}</strong></p>
   <details>
