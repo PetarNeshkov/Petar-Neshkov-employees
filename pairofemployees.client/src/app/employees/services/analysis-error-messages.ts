@@ -1,19 +1,18 @@
+import { APP_CONSTANTS } from '../../core/constants/app.constants';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ApiProblem} from '../models/api-problem';
-import { ERROR_MESSAGES } from '../../core/constants/error-messages';
-import { HTTP_STATUS } from '../../core/constants/http-status.constants';
 
 export function getAnalysisErrorMessages(error: HttpErrorResponse): string[] {
-  if (error.status === HTTP_STATUS.NETWORK_ERROR) {
-    return [ERROR_MESSAGES.CONNECTION_FAILED];
+  if (error.status === APP_CONSTANTS.NETWORK_ERROR) {
+    return [APP_CONSTANTS.CONNECTION_FAILED];
   }
 
-  if (error.status === HTTP_STATUS.PAYLOAD_TOO_LARGE) {
-    return [ERROR_MESSAGES.UPLOAD_TOO_LARGE];
+  if (error.status === APP_CONSTANTS.PAYLOAD_TOO_LARGE) {
+    return [APP_CONSTANTS.UPLOAD_TOO_LARGE];
   }
 
-  if (error.status >= HTTP_STATUS.SERVER_ERROR_START) {
-    return [ERROR_MESSAGES.SERVER_ERROR];
+  if (error.status >= APP_CONSTANTS.SERVER_ERROR_START) {
+    return [APP_CONSTANTS.SERVER_ERROR];
   }
 
   // A proxy may return plain text or HTML instead of the API's JSON error format.
@@ -39,5 +38,5 @@ export function getAnalysisErrorMessages(error: HttpErrorResponse): string[] {
     }
   }
 
-  return [ERROR_MESSAGES.ANALYSIS_FAILED];
+  return [APP_CONSTANTS.ANALYSIS_FAILED];
 }

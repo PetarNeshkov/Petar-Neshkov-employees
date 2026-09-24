@@ -1,17 +1,16 @@
-import { ERROR_MESSAGES } from '../../core/constants/error-messages';
-import { UPLOAD_CONSTANTS } from '../../core/constants/upload.constants';
+import { APP_CONSTANTS } from '../../core/constants/app.constants';
 
 export function validateCsvFile(file: File): string | null {
-  if (!file.name.toLowerCase().endsWith(UPLOAD_CONSTANTS.CSV_EXTENSION)) {
-    return ERROR_MESSAGES.CSV_EXTENSION_REQUIRED;
+  if (!file.name.toLowerCase().endsWith(APP_CONSTANTS.CSV_EXTENSION)) {
+    return APP_CONSTANTS.CSV_EXTENSION_REQUIRED;
   }
 
   if (file.size === 0) {
-    return ERROR_MESSAGES.EMPTY_FILE;
+    return APP_CONSTANTS.EMPTY_FILE;
   }
 
-  if (file.size > UPLOAD_CONSTANTS.MAX_FILE_BYTES) {
-    return ERROR_MESSAGES.FILE_TOO_LARGE;
+  if (file.size > APP_CONSTANTS.MAX_FILE_BYTES) {
+    return APP_CONSTANTS.FILE_TOO_LARGE;
   }
 
   return null;

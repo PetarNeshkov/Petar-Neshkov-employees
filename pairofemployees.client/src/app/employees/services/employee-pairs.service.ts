@@ -1,7 +1,6 @@
+import { APP_CONSTANTS } from '../../core/constants/app.constants';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EMPLOYEE_PAIR_URLS } from '../../core/constants/api-routes';
-import { UPLOAD_CONSTANTS } from '../../core/constants/upload.constants';
 import { ApiService } from '../../core/services/api.service';
 import { AnalysisResponse } from '../models/analysis-response';
 
@@ -11,8 +10,8 @@ export class EmployeePairsService {
 
   analyze(file: File): Observable<AnalysisResponse> {
     const form = new FormData();
-    form.append(UPLOAD_CONSTANTS.FILE_FIELD, file);
+    form.append(APP_CONSTANTS.FILE_FIELD, file);
 
-    return this.api.post<AnalysisResponse>(EMPLOYEE_PAIR_URLS.ANALYZE, form);
+    return this.api.post<AnalysisResponse>(APP_CONSTANTS.ANALYZE_URL, form);
   }
 }

@@ -1,3 +1,4 @@
+import { APP_CONSTANTS } from '../../../core/constants/app.constants';
 import {Component, DestroyRef, inject} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
@@ -6,7 +7,6 @@ import {AnalysisResponse} from '../../models/analysis-response';
 import {getAnalysisErrorMessages} from '../../services/analysis-error-messages';
 import {EmployeePairsService} from '../../services/employee-pairs.service';
 import {validateCsvFile} from '../../validation/csv-file.validation';
-import { UPLOAD_CONSTANTS } from '../../../core/constants/upload.constants';
 
 @Component({
   selector: 'app-employee-upload',
@@ -14,7 +14,7 @@ import { UPLOAD_CONSTANTS } from '../../../core/constants/upload.constants';
   styleUrl: './employee-upload.component.css'
 })
 export class EmployeeUploadComponent {
-  readonly acceptedFileTypes = UPLOAD_CONSTANTS.ACCEPTED_FILE_TYPES;
+  readonly acceptedFileTypes = APP_CONSTANTS.ACCEPTED_FILE_TYPES;
   private readonly destroyRef = inject(DestroyRef);
 
   loading = false;
