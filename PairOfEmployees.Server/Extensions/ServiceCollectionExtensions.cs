@@ -1,6 +1,5 @@
 ﻿using PairOfEmployees.Server.Business.EmployeePairs;
 using PairOfEmployees.Server.ExceptionHandling;
-using PairOfEmployees.Server.Services.Analysis;
 using PairOfEmployees.Server.Services.Parsing;
 using PairOfEmployees.Server.Validation;
 
@@ -14,7 +13,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<AssignmentDateParser>();
         services.AddSingleton<CsvUploadValidator>();
         services.AddScoped<AssignmentCsvParser>();
-        services.AddScoped<EmployeePairAnalyzer>();
         services.AddScoped<IEmployeePairsBusinessService, EmployeePairsBusinessService>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
     }

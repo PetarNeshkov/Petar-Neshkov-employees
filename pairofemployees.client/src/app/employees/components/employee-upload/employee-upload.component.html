@@ -5,9 +5,20 @@
     <span class="badge">CSV</span>
   </div>
   <p id="file-help">Choose a CSV file to analyze it automatically. Up to 1 MiB and 10,000 assignment rows.</p>
-  <label for="assignments-file">Assignment file</label>
-  <input id="assignments-file" type="file" [accept]="acceptedFileTypes" [disabled]="loading"
-         aria-describedby="file-help" (change)="onFileSelected($event)"/>
+  <div class="drop-zone" role="group" aria-labelledby="drop-title" aria-describedby="file-help"
+       [class.is-dragging]="isDragging" [class.is-disabled]="loading"
+       [attr.aria-disabled]="loading"
+       (dragenter)="onDragEnter($event)" (dragover)="onDragOver($event)"
+       (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+    <h3 id="drop-title">{{ labels.DROP_ZONE_TITLE }}</h3>
+    <p>{{ labels.DROP_ZONE_HINT }}</p>
+    <button type="button" class="choose-file" [disabled]="loading" (click)="fileInput.click()">
+      {{ labels.CHOOSE_FILE_LABEL }}
+    </button>
+    <input #fileInput id="assignments-file" class="file-input" type="file" hidden
+           [accept]="acceptedFileTypes" [disabled]="loading"
+           [attr.aria-label]="labels.CHOOSE_FILE_LABEL" (change)="onFileSelected($event)"/>
+  </div>
   <p class="file-name" *ngIf="fileName">Selected: <strong>{{ fileName }}</strong></p>
   <details>
     <summary>CSV format and date rules</summary>
