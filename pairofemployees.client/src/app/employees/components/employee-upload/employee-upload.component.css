@@ -39,36 +39,38 @@ p {
   line-height: 1.6;
 }
 
-label {
-  display: block;
-  font-size: .9rem;
-  font-weight: 600;
-  margin: 20px 0 10px;
-}
-
-input {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  border: 1px dashed #93abb4;
-  border-radius: 10px;
+.drop-zone {
+  margin-top: 20px;
+  padding: 36px 20px;
+  border: 2px dashed #93abb4;
+  border-radius: 12px;
   background: #f8fafb;
-  color: #344b5b;
+  text-align: center;
+  transition: background-color .15s, border-color .15s;
 }
 
-input::file-selector-button {
+.drop-zone.is-dragging {
+  border-color: #285f66;
+  background: #e5f2ee;
+}
+
+.drop-zone h3 { font-size: 1.1rem; }
+.drop-zone p { margin: 10px 0 20px; }
+.file-input { display: none; }
+
+.choose-file {
   border: 0;
-  border-radius: 6px;
-  padding: 10px 16px;
-  margin-right: 16px;
+  border-radius: 8px;
+  padding: 12px 22px;
   background: #285f66;
   color: white;
+  font-weight: 600;
   cursor: pointer;
 }
 
-input:disabled {
-  opacity: .6;
-}
+.choose-file:hover:not(:disabled) { background: #1c4c53; }
+.choose-file:disabled { cursor: wait; }
+.is-disabled { opacity: .6; }
 
 .file-name {
   overflow-wrap: anywhere;

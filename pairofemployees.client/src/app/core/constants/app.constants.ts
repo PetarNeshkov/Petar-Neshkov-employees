@@ -7,6 +7,10 @@ export const APP_CONSTANTS = {
   CSV_EXTENSION: '.csv',
   ACCEPTED_FILE_TYPES: '.csv,text/csv',
   MAX_FILE_BYTES: 1_048_576,
+  DROP_ZONE_TITLE: 'Drag and drop your CSV file here',
+  CHOOSE_FILE_LABEL: 'Choose CSV file',
+  DROP_ZONE_HINT: 'Or use the button below. Analysis starts automatically.',
+  SINGLE_FILE_REQUIRED: 'Choose or drop one CSV file at a time.',
 
   NETWORK_ERROR: 0,
   PAYLOAD_TOO_LARGE: 413,

@@ -14,10 +14,13 @@ import {validateCsvFile} from '../../validation/csv-file.validation';
   styleUrl: './employee-upload.component.css'
 })
 export class EmployeeUploadComponent {
+  readonly labels = APP_CONSTANTS;
   readonly acceptedFileTypes = APP_CONSTANTS.ACCEPTED_FILE_TYPES;
   private readonly destroyRef = inject(DestroyRef);
+  private dragDepth = 0;
 
   loading = false;
+  isDragging = false;
   fileName = '';
   errors: string[] = [];
   response: AnalysisResponse | null = null;
@@ -37,6 +40,51 @@ export class EmployeeUploadComponent {
     }
 
     input.value = '';
+    this.uploadFile(file);
+  }
+
+  onDragEnter(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    if (this.loading) return;
+
+    this.dragDepth++;
+    this.isDragging = true;
+  }
+
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.dragDepth = Math.max(0, this.dragDepth - 1);
+    this.isDragging = this.dragDepth > 0;
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.dragDepth = 0;
+    this.isDragging = false;
+    if (this.loading) return;
+
+    const files = event.dataTransfer?.files;
+    if (!files?.length) return;
+
+    if (files.length !== 1) {
+      this.fileName = '';
+      this.response = null;
+      this.errors = [APP_CONSTANTS.SINGLE_FILE_REQUIRED];
+      return;
+    }
+
+    this.uploadFile(files[0]);
+  }
+
+  private uploadFile(file: File): void {
     this.fileName = file.name;
     this.response = null;
     this.errors = [];
